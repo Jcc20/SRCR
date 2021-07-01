@@ -1,0 +1,197 @@
+\documentclass[11pt, a4paper, titlepage]{article}
+%----- Packages
+\usepackage[utf8]{inputenc} %caracteres não ASCII
+\usepackage[portuguese]{babel} %traducao para PT
+\usepackage{ucs} %caracteres extra
+\usepackage{graphicx} %imagens
+\usepackage{fancyhdr} %header e footer
+\usepackage{titling} %para fazer referencias posteriores ex: \theauthor
+\usepackage{caption,subcaption} %legendas
+\usepackage{indentfirst} %indentar primeiro paragrafo de secção
+\usepackage{float} %para utilizar [H] nas figuras
+\usepackage{subfiles}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref} %hiperligações
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue
+}
+\usepackage{graphicx,wrapfig,lipsum} %Para imagens ao lado do texto
+\usepackage{comment} %Para blocos de comentarios
+\usepackage{ragged2e} % Alinhamento de texto
+\usepackage{eurosym} %Utilizar o simbolo €
+\usepackage{siunitx}
+\usepackage{amsmath} %Fórmulas matemáticas
+\usepackage[dvipsnames]{xcolor} %Texto a cores
+\usepackage[backend=biber,style=numeric,sorting=none,block=ragged]{biblatex} %Biliografia
+\usepackage{geometry} %Margens
+\geometry{
+ a4paper,
+ left=3cm,
+ top=3cm,
+ bottom=2.5cm,
+ right=2.5cm
+ }
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{enumerate}
+\usepackage{outlines} %Nested lists
+\usepackage{array}
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage} %Cada secção numa página nova
+
+\usepackage{setspace}
+\usepackage{dirtytalk}
+\linespread{1.25}
+
+\usepackage{fancyvrb}
+\usepackage{listings}  % para utilizar blocos de texto verbatim no estilo 'listings'
+%paramerização mais vulgar dos blocos LISTING - GENERAL
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,  
+    mathescape=true,
+    numbers=left,  
+    numbersep=5pt,  
+    numberstyle=\tiny,                
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\addbibresource{sample.bib}
+
+%-----------------------
+
+\usepackage{tocloft}
+\setcounter{lofdepth}{2}
+\makeatletter
+\newcommand{\figsourcefont}{\footnotesize}
+\newcommand{\figsource}[1]{
+\addtocontents{lof}{
+{\leftskip\cftfigindent
+\advance\leftskip\cftfignumwidth
+\rightskip\@tocrmarg
+\figsourcefont#1\protect\par}
+}
+}
+
+%----- Estilo da página
+\pagestyle{fancy}
+
+\lhead{\includegraphics[height=0.7cm]{UM.png}} 
+\rhead{{Relatório TP1}}
+\lfoot{SRCR}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.2pt}
+\headheight = 30pt
+%------------------------
+
+\def\darius{\textsf{Darius}\xspace}
+\def\antlr{\texttt{AnTLR}\xspace}
+\def\pl{\emph{Sistemas de Representação de Conhecimento e Raciocínio}\xspace}
+\def\titulo#1{\section{#1}}
+\def\super#1{{\em Supervisor: #1}\\ }
+\def\area#1{{\em \'{A}rea: #1}\\[0.2cm]}
+\def\resumo{\underline{Resumo}:\\ }
+
+%------ Info do documento
+\title{\textbf{Exercício Individual}}
+\author{
+    Filipa Alves dos Santos, a83631 \\
+    Hugo André Coelho Cardoso, a85006 \\
+    João da Cunha e Costa, a84775 \\
+    Rui Alves dos Santos, a67656 \\
+    Válter Ferreira Picas Carvalho, a84464}
+\graphicspath{{images/}}
+\bibpunct{[}{]}{;}{n}{,}{,}
+%-------------------------
+
+
+
+\begin{document}
+
+%------ Capa do relatório--------------------
+\begin{titlepage}
+\centering
+\includegraphics{UM.png}\\[1 cm]
+
+\textsc{\LARGE Universidade do Minho}\\[1.5 cm]
+
+\textsc{\Large Sistemas de Representação de Conhecimento e Raciocínio (3º ano de curso, 2º semestre)}\\[0.5 cm]
+
+\rule{\linewidth}{0.2 mm} \\[0.7 cm]
+{\huge \bfseries \thetitle}\\[0.6 cm]
+\rule{\linewidth}{0.2 mm} \\[1 cm]
+
+\textsc{\LARGE Relatório de Desenvolvimento}\\[0.9 cm]\par
+
+\rule{\linewidth}{0.2 mm} \\[1.5 cm]
+
+Mestrado Integrado em Engenharia Informática\par
+\vfill
+\vfill
+
+\RaggedLeft
+\emph{\textbf{Realizado pelo aluno:}}  
+\par \theauthor \par 
+
+\Centering
+\vfill
+	\today
+\end{titlepage}
+
+\pagenumbering{arabic}
+
+\begin{abstract}
+Insert resumo here
+\end{abstract}
+
+\begin{spacing}{1}
+\tableofcontents
+\cleardoublepage
+\listoffigures
+\end{spacing}
+
+\section[Introdução]{\LARGE Introdução} \label{sec1}
+\input{sections/1.Introdução}
+
+\section[Preliminares]{\LARGE Preliminares} \label{sec2}
+\input{sections/2.Preliminares}
+
+\section[Descrição do Trabalho e Análise de Resultados]{\LARGE Descrição do Trabalho e Análise de Resultados} \label{sec3}
+\input{sections/3.DescriçãoAnáliseResultados}
+
+\section[Conclusões e Sugestões]{\LARGE Conclusões e Sugestões} \label{sec4}
+\input{sections/4.ConclusõesSugestões}
+
+\section[Referências]{\LARGE Referências} \label{src5}
+\input{sections/5.Referencias}
+
+\appendix % apendice
+\section[Anexo]{\LARGE Anexo} \label{anexo}
+\input{sections/A.Anexo}
+
+%-- Fim do documento -- inserção das referencias bibliográficas
+
+%\bibliographystyle{plain} % [1] Numérico pela ordem de citação ou ordem alfabetica
+\bibliographystyle{alpha} % [Hen18] abreviação do apelido e data da publicação
+%\bibliographystyle{apalike} % (Araujo, 2018) apelido e data da publicação
+                             % --para usar este estilo descomente no inicio o comando \usepackage{apalike}
+
+\end{document}
